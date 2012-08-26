@@ -10,7 +10,9 @@ describe User do
       :password_confirmation => "foobar"
     }
   end
-  
+
+  it { should validate_presence_of :name }
+
   it "should create a new instance given a valid attribute" do
     User.create!(@attr)
   end

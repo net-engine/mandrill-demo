@@ -15,14 +15,13 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module Rails3BootstrapDeviseCancan
+module MandrillDemo
   class Application < Rails::Application
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
       g.view_specs false
       g.helper_specs false
-      
     end
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -62,6 +61,13 @@ module Rails3BootstrapDeviseCancan
     # This is necessary if your schema can't be completely dumped by the schema dumper,
     # like if you have constraints or database-specific column types
     # config.active_record.schema_format = :sql
+
+    config.action_mailer.smtp_settings = {
+          :address   => "smtp.mandrillapp.com",
+          :port      => 587,
+          :user_name => ENV["MANDRILL_USERNAME"],
+          :password  => ENV["MANDRILL_API_KEY"]
+        }
 
     # Enforce whitelist mode for mass assignment.
     # This will create an empty whitelist of attributes available for mass-assignment for all models
