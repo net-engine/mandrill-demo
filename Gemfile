@@ -5,9 +5,11 @@ gem 'cancan', '>= 1.6.8'
 gem 'devise', '>= 2.1.2'
 gem 'haml-rails'
 gem 'jquery-rails'
+gem 'mandrill-api', '~> 1.0.4', require: 'mandrill'
 gem 'pg'
 gem 'rails', '3.2.8'
 gem 'rolify', '>= 3.2.0'
+gem 'simple_form'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

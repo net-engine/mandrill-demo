@@ -1,0 +1,31 @@
+- if @messages.any?
+  .messages-box
+    %table.table.table-hover
+      %thead
+        %tr
+          %th #
+          %th Subject
+          %th Content
+          %th Status
+          %th Opens
+          %th Clicks
+          %th Status Updated
+      %tbody
+        - @messages.each_with_index do |message, index|
+          %tr[message]
+            %td= index+1
+            %td= message.subject
+            %td= message.content
+            %td
+              %span{class: "label #{message.status_label}"}
+                = message.delivery_status.titlecase
+            %td= message.opens
+            %td= message.clicks
+            %td= time_ago_in_words(message.last_status_update)<<' ago' rescue 'Never'
+
+.messages-form.well
+  %h2 Send yourself a new email. Then track it.
+  = simple_form_for(@new_message, :html => {:class => 'form-inline' }) do |form|
+    = form.input :subject, placeholder: 'Subject..', label: false
+    = form.input :content, placeholder: 'Content..', label: false
+    = form.button :submit
